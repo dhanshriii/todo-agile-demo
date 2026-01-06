@@ -11,18 +11,27 @@ HTML = """
     <title>Todo App</title>
 </head>
 <body>
-    <h2>Todo List</h2>
+    <h2>Add a Task</h2>
 
     <form method="POST">
         <input type="text" name="task" required>
         <button type="submit">Add Task</button>
     </form>
 
-    <ul>
-        {% for task in tasks %}
-            <li>{{ task }}</li>
-        {% endfor %}
-    </ul>
+    <hr>
+
+    <h2>All Tasks</h2>
+
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <li>{{ loop.index }}. {{ task }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tasks added yet.</p>
+    {% endif %}
+
 </body>
 </html>
 """
@@ -37,4 +46,3 @@ def home():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-
